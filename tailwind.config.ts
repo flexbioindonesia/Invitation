@@ -13,7 +13,7 @@ const config: Config = {
         xs: '0rem',
         sm: '2rem',
         lg: '4rem',
-        xl: '5rem',
+        xl: '10rem',
         '2xl': '6rem',
       },
     },
