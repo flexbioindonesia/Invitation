@@ -1,8 +1,9 @@
+import SmoothTheme from '../themes/Smooth';
 function Page({params}: any) {
 	const { id } = params;
 	return (
 		<>
-			<div>
+			{/* <div>
 				<div className="w-full h-screen relative overflow-hidden">
 					<ul className="cb-slideshow">
 						<li>
@@ -45,7 +46,9 @@ function Page({params}: any) {
 			</div>
 			<div className="container mx-auto">
 				ss
-			</div>
+			</div> */}
+
+			<SmoothTheme />
 		</>
 	);
 }

@@ -14,6 +14,9 @@ export async function middleware(req: NextRequest) {
   if (PUBLIC_FILE.test(url.pathname) || url.pathname.includes('_next')) return;
 
   const host = req.headers.get('host');
+  if(host?.split('.').length || 0 > 3){
+    return NextResponse.rewrite(url);
+  }
   const subdomain = getValidSubdomain(host);
   if (subdomain) {
     // Subdomain available, rewriting
