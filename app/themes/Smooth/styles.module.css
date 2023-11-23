@@ -21,3 +21,8 @@
   mask-position: center;
   mask-image: url('/image/background/frame-white.jpg');  
 }
+
+.bridgeWord {
+  background: url('/image/background/natural-light.jpg') no-repeat center;
+  background-size: cover;
+}
