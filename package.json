@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "animate.css": "^4.1.1",
+    "disqus-react": "^1.1.5",
     "next": "14.0.3",
     "react": "^18",
     "react-countdown": "^2.3.5",
