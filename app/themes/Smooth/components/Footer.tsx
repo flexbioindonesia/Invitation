@@ -15,7 +15,7 @@ function Footer() {
         priority
       />
       <p className={`text-[#D4AF37] absolute bottom-3 z-[5] text-[30px] ${ephesis.className}`}>See You on Our Big Day</p>
-      <div className="bg-white/90 blur-xl w-full h-[60px] absolute bottom-0 z-[3]" />
+      <div className="bg-white/90 blur-xl w-full h-[100px] absolute bottom-0 z-[3]" />
     </div>
   );
 }
