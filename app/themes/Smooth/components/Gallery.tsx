@@ -10,32 +10,32 @@ const ephesis = Ephesis({ weight: ['400'], subsets: ['latin'] })
 
 const images = [
   {
-    src: "https://drive.google.com/uc?export=view&id=1_-UN49J7Co3hRLWeWMx14c242hnVMvvK",
-    original: "https://drive.google.com/uc?export=view&id=1_-UN49J7Co3hRLWeWMx14c242hnVMvvK",
+    src: "https://res.cloudinary.com/dbjlrbvv4/image/upload/v1701310249/invite/uc_yu2euo.jpg",
+    original: "https://res.cloudinary.com/dbjlrbvv4/image/upload/v1701310249/invite/uc_yu2euo.jpg",
     width: 240,
     height: 320,
   },
   {
-    src: "https://drive.google.com/uc?export=view&id=1fgTsL3fF8bsFAz3BfrKHSMd8MvHzyhnB",
-    original: "https://drive.google.com/uc?export=view&id=1fgTsL3fF8bsFAz3BfrKHSMd8MvHzyhnB",
+    src: "https://res.cloudinary.com/dbjlrbvv4/image/upload/v1701310270/invite/uc_rxoxxe.jpg",
+    original: "https://res.cloudinary.com/dbjlrbvv4/image/upload/v1701310270/invite/uc_rxoxxe.jpg",
     width: 240,
     height: 320,
   },
   {
-    src: "https://drive.google.com/uc?export=view&id=1-tyH69vfYoqLOEnpFCiI8LYpRzsMPIju",
-    original: "https://drive.google.com/uc?export=view&id=1-tyH69vfYoqLOEnpFCiI8LYpRzsMPIju",
+    src: "https://res.cloudinary.com/dbjlrbvv4/image/upload/v1701310283/invite/uc_olrb3m.jpg",
+    original: "https://res.cloudinary.com/dbjlrbvv4/image/upload/v1701310283/invite/uc_olrb3m.jpg",
     width: 240,
     height: 320,
   },
   {
-    src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-    original: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
+    src: "https://res.cloudinary.com/dbjlrbvv4/image/upload/v1701310302/invite/28897124891_98c4fdd82b_b_k9rhso.jpg",
+    original: "https://res.cloudinary.com/dbjlrbvv4/image/upload/v1701310302/invite/28897124891_98c4fdd82b_b_k9rhso.jpg",
     width: 240,
     height: 212,
   },
   {
-    src: "https://drive.google.com/uc?export=view&id=1_-UN49J7Co3hRLWeWMx14c242hnVMvvK",
-    original: "https://drive.google.com/uc?export=view&id=1_-UN49J7Co3hRLWeWMx14c242hnVMvvK",
+    src: "https://res.cloudinary.com/dbjlrbvv4/image/upload/v1701310249/invite/uc_yu2euo.jpg",
+    original: "https://res.cloudinary.com/dbjlrbvv4/image/upload/v1701310249/invite/uc_yu2euo.jpg",
     width: 240,
     height: 320,
   },
