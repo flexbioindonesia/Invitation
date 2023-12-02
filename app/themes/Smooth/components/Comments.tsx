@@ -2,7 +2,7 @@ import { FaHeart } from "react-icons/fa6";
 
 function Comments({color, data, sendMessage}: any) {
   return (
-    <div className="relative">
+    <div className="relative bg-white">
       <div className="px-5 py-5 text-white rounded-t-2xl bg-yellow-700/60" style={{ background: color }}>
         <p className="text-center text-xl text-white uppercase mb-3">Ucapan dan Doa</p>
         <form onSubmit={sendMessage}>

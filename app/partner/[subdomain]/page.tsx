@@ -1,6 +1,6 @@
 function Page({params}: any) {
 	return (
-		<h1>Halo {params.subdomain}</h1>
+		<h1>Halo ssss {params.subdomain}</h1>
 	);
 }
 

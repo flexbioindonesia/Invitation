@@ -3,7 +3,7 @@ import { FaGift, FaCopy } from "react-icons/fa6";
 
 function Gifts() {
   return (
-    <div className={`relative px-4 py-6`}>
+    <div className={`relative px-4 py-6 bg-white`}>
       <div className="text-center">
         <p className="text-[#D4AF37] text-xl italic">Wedding Gift</p>
         <p className="text-zinc-400 pt-4">Kehadiran dan doa restu Bapak/Ibu/Sudara/i merupakan anugerah terindah bagi kami. Namun, apabila Bapak/Ibu/Saudara/i tidak dapat hadir dan hendak memberikan tanda kasih kepada kami, dapat menggunakan fitur di bawah ini.</p>

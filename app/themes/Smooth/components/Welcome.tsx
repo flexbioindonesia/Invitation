@@ -1,8 +1,9 @@
+"use client"
 import { Ephesis } from 'next/font/google'
 import { calcTimeDelta } from "react-countdown";
 const ephesis = Ephesis({ weight: ['400'], subsets: ['latin'] })
 
-function Welcome() {
+function Welcome({data}: any) {
   const rendererTime = (date: any) => {
     const {total, days, hours, minutes, seconds, milliseconds, completed} = calcTimeDelta(date)
     return(
@@ -33,8 +34,8 @@ function Welcome() {
       <div className="bg-white/70 blur-xl w-full h-[60px] absolute top-[-31px] z-[3]" />
       <div className="bg-white px-5 py-6 text-center">
           <p className={`text-[32px] text-[#D4AF37] font-bold mb-4 ${ephesis.className}`}>Welcome</p>
-          <p className="text-zinc-600">Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.</p>
-          {rendererTime(Date.parse('12-03-2023'))}
+          <p className="text-zinc-600">{data.welcomeText || 'Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.'}</p>
+          {rendererTime(Date.parse(data.welcomeDate|| '12-03-2023'))}
       </div>
       <div className="bg-white/70 blur-xl w-full h-[60px] absolute bottom-[-31px] z-[3]" />
     </div>

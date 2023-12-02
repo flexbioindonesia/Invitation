@@ -2,7 +2,7 @@ import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timel
 import { FaPeopleRobbery, FaPeoplePulling } from "react-icons/fa6";
 function Story() {
   return (
-    <div className="relative px-4 py-6">
+    <div className="relative px-4 py-6 bg-white">
       <div className="shadow-sm rounded-xl overflow-hidden">
         <video className="w-[100%] h-[200px] object-cover shadow-2xl rounded-xl" autoPlay={false} muted={true} controls={true} loop={true} src="/video_contoh.mp4"></video>
         {/* <video className="w-[100%] h-[200px] object-cover shadow-2xl rounded-xl" autoPlay={false} muted={true} controls={true} loop={true} src="https://drive.google.com/uc?export=download&id=11VTRTTkD1axra5zQ7T2pBvKaDsOz8HF0"></video> */}

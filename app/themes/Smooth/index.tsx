@@ -18,7 +18,8 @@ import BigCover from "./components/BigCover";
 import Music from "./components/Music";
 
 const vollkorn = Vollkorn({ subsets: ['latin'] })
-import 'animate.css';
+// import 'animate.css';
+import "animate.css/animate.min.css";
 import Confirmation from "./components/Confirmation";
 import Footer from "./components/Footer";
 
@@ -60,7 +61,7 @@ const dataComments = [
   },
 ]
 
-function Index() {
+function Index({type, form}: any) {
   const [isOpen, setIsOpen] = useState(false);
   const [audio, setAudio] = useState<any>()
   const [isPlay, setIsPlay] = useState<boolean>(true)
@@ -90,10 +91,12 @@ function Index() {
   }
 
   const buttonOpen = () => {
-    start();
-    setTimeout(() => {
-      setIsStart(false);
-    }, 5000);
+    if(type !== 'preview'){
+      start();
+      setTimeout(() => {
+        setIsStart(false);
+      }, 5000);
+    }
   }
 
   const handleSendMessage = (e: any) => {
@@ -107,18 +110,32 @@ function Index() {
     setIsDatang(e.target.checked)
   }
 
+  const data = form.watch()
+
   if(!isOpen){
-    return <Sampul openInvite={setIsOpen} isOpen={isOpen} playAudio={() => buttonOpen()} />
+    return <Sampul data={data} openInvite={setIsOpen} isOpen={isOpen} playAudio={() => buttonOpen()} />
   }
 
   return (
-    <div className="flex h-screen">
-      <BigCover />
-      <div className={`${vollkorn.className} w-full lg:w-[30%] animate__animated animate__fadeIn h-screen overflow-y-auto`}>
-        <Music buttonAudioClick={buttonAudioClick} isStart={isStart} isPlay={isPlay} />
-        <Header />
-        <Welcome />
-        <BrideGroom />
+    <div className="flex h-screen relative">
+      {
+        type !== 'preview' && (
+          <BigCover />
+        )
+      }
+      <div className={`${vollkorn.className} relative w-full ${type !== 'preview' && 'lg:w-[30%]'} animate__animated animate__fadeIn h-screen overflow-y-auto`}>
+        {
+          type !== 'preview' && (
+            <Music buttonAudioClick={buttonAudioClick} isStart={isStart} isPlay={isPlay} />
+          )
+        }
+        <Header data={data} />
+        {
+          data.welcomeIsActive && (
+            <Welcome data={data} />
+          )
+        }
+        <BrideGroom data={data} />
         <Quote />
         <Events />
         <Story />

@@ -1,6 +1,6 @@
 function Confirmation({clicked, confirm}: any) {
   return (
-    <div className='relative px-4 py-8 flex flex-col items-center'>
+    <div className='relative px-4 py-8 flex flex-col items-center bg-white'>
       <p className="text-xl text-[#D4AF37]">Apakah kamu akan datang?</p>
       <div className="toggle-button-cover">
         <div className="button-cover">

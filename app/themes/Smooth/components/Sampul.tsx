@@ -6,23 +6,23 @@ import 'animate.css';
 const ephesis = Ephesis({ weight: ['400'], subsets: ['latin'] })
 const vollkorn = Vollkorn({ subsets: ['latin'] })
 
-function Sampul({openInvite, isOpen, playAudio}: any) {
+function Sampul({openInvite, isOpen, playAudio, data}: any) {
   return (
     <>
       <div className={`${styles.sampulBackground} ${vollkorn.className} w-full h-screen`}>
         <div className='h-screen flex flex-col items-center justify-center gap-3'>
           <p className={`${ephesis.className} text-[30px] text-zinc-600`}>Wedding Of</p>
           <div className='relative w-[70%] h-[50%] flex border-[2px] px-4 py-4 border-[#D4AF37]'>
-            <p className={`bg-gray-100 absolute top-3 left-[-16px] [writing-mode:vertical-lr] rotate-180 text-[20px] text-zinc-600 font-light uppercase`}>Dhany D.P</p>
+            <p className={`bg-gray-100 absolute top-3 left-[-16px] [writing-mode:vertical-lr] rotate-180 text-[20px] text-zinc-600 font-light uppercase`}>{data.coverGroomName || 'Dhany D.P'}</p>
             <Image
-              src="/image/penutup.jpg"
+              src={data.coverBackground || "/image/penutup.jpg"}
               alt="Sampul"
               width={240}
               height={300}
               className='w-full h-full object-cover mix-blend-multiply z-10 lg:object-top'
               priority
             />
-            <p className='bg-gray-100 absolute bottom-3 right-[-16px] [writing-mode:vertical-lr] text-[20px] text-zinc-600 font-light uppercase'>Mala Nahar</p>
+            <p className='bg-gray-100 absolute bottom-3 right-[-16px] [writing-mode:vertical-lr] text-[20px] text-zinc-600 font-light uppercase'>{data.coverBrideName || 'MALA NAHAR'}</p>
           </div>
           <div className='text-center py-4'>
             <p className={`text-[14px] text-zinc-500 font-normal`}>Kepada Yth.</p>
