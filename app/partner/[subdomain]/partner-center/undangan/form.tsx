@@ -165,7 +165,7 @@ function Form({form}: any) {
       <div className="w-full px-4 py-4 flex flex-col gap-4">
         <div className="mb-4">
           <Heading as='h3' size='lg'>
-            Input Undangan
+            Input Undangan Baru
           </Heading>
           <Breadcrumb className="mt-2 text-sm">
             <BreadcrumbItem>
