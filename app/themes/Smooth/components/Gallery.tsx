@@ -41,23 +41,28 @@ const images = [
   },
 ];
 
-const slides = images.map(({ original, width, height }) => ({
-  src: original,
-  width,
-  height,
-}));
-
-function Gallery() {
+function Gallery({data}: any) {
   const [index, setIndex] = useState(-1);
 
   const handleClick = (index: number) => setIndex(index);
+  let imagesData: { src: any; original: any; }[] = [];
+  data?.galeryItems?.map((itm: any, idx: any) => {
+    imagesData.push({
+      src: itm,
+      original: itm
+    })
+  })
+
+  const slides = imagesData?.map(({ original }) => ({
+    src: original,
+  }));
 
   return (
     <div className={`${styles.galleryBackground} pt-7 pb-10`}>
       <p className={`text-[32px] text-[#D4AF37] font-bold mb-4 text-center ${ephesis.className}`}>Gallery</p>
       <section className={styles.photos}>
         {
-          images.map((itm, idx) => (
+          imagesData?.map((itm, idx) => (
             <img key={idx} onClick={() => handleClick(idx)} src={itm.src} alt="image" />
           ))
         }

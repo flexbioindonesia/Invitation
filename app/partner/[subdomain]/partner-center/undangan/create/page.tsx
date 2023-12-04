@@ -1,67 +1,93 @@
 "use client"
 import {useForm} from 'react-hook-form'
-
-import CloudinaryUploadWidget from "../../CloudinaryUploadWidge";
-import { Cloudinary } from "@cloudinary/url-gen";
-import { AdvancedImage, responsive, placeholder } from "@cloudinary/react";
 import Form from '../form'
+import { useCreate } from '@/hooks/useUndangan';
 import { DataInv } from '../form';
 
 import Preview from '../../components/Preview';
-import { useState } from 'react';
-function Page() {
+
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Heading, useToast } from '@chakra-ui/react';
+import { useRouter } from 'next/navigation';
+function Page({params}: any) {
+  const toast = useToast();
+  const route = useRouter();
 	const form = useForm<DataInv>(
     {
       defaultValues: {
         welcomeIsActive: true,
-        welcomeText: `Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.`
+        welcomeText: `Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.`,
+        quoteIsActive: true,
+        commentsIsActive: true,
+        confirmationIsActive: true,
+        sotryIsActive: true,
+        storyIsVideo: true,
+        generalTheme: 'Smooth',
+        giftIsActive: true
       }
     }
   );
 
+  const {handleSubmit} = form;
 
-	const [publicId, setPublicId] = useState("");
-  // Replace with your own cloud name
-  const [cloudName] = useState("dbjlrbvv4");
-  // Replace with your own upload preset
-  const [uploadPreset] = useState("nk4aesw5");
-
-  // Upload Widget Configuration
-  // Remove the comments from the code below to add
-  // additional functionality.
-  // Note that these are only a few examples, to see
-  // the full list of possible parameters that you
-  // can add see:
-  //   https://cloudinary.com/documentation/upload_widget_reference
-
-  const [uwConfig] = useState({
-    cloudName,
-    uploadPreset
-    // cropping: true, //add a cropping step
-    // showAdvancedOptions: true,  //add advanced options (public_id and tag)
-    // sources: [ "local", "url"], // restrict the upload sources to URL and local files
-    // multiple: false,  //restrict upload to a single file
-    // folder: "user_images", //upload files to the specified folder
-    // tags: ["users", "profile"], //add the given tags to the uploaded files
-    // context: {alt: "user_uploaded"}, //add the given context data to the uploaded files
-    // clientAllowedFormats: ["images"], //restrict uploading to image files only
-    // maxImageFileSize: 2000000,  //restrict file size to less than 2MB
-    // maxImageWidth: 2000, //Scales the image down to a width of 2000 pixels before uploading
-    // theme: "purple", //change to a purple theme
-  });
-
-  // Create a Cloudinary instance and set your cloud name.
-  const cld = new Cloudinary({
-    cloud: {
-      cloudName
+  const getPayload = (data: DataInv) => {
+    return {
+      slug: data.generalUrl,
+      content: data,
+      tema: data.generalTheme,
+      partner: params.subdomain
     }
+  }
+
+  const createUndangan = useCreate({
+    onSuccess: (res: any) => {
+      console.log(res)
+      toast({
+        title: `Sukses Menambahkan Undangan`,
+        status: 'success',
+        isClosable: true,
+      });
+      setTimeout(
+        () => route.replace('/partner-center/undangan'),
+        1000
+      );
+    },
+    onError: (err: any) => {
+      const pesanError = err.response?.data?.error?.message === 'This attribute must be unique' ? 'Link URL sudah terpakai, Silahkan ganti dengan yang lain' : err.response?.data?.error?.message
+      toast({
+        title: `Gagal Menambahkan Undangan: ${pesanError}`,
+        status: 'error',
+        isClosable: true,
+      })
+      console.log(err)
+    },
   });
 
-  const myImage = cld.image(publicId);
+  const handleSubmitForm = (data: DataInv) => {
+    createUndangan.mutate(getPayload(data))
+  }
 
 	return (
 		<div className='flex items-center w-full flex-col lg:flex-row'>
       <div className='w-full lg:h-screen px-5 py-5 lg:overflow-y-auto bg-slate-50'>
+        <div className="mb-4 px-4 flex item-center justify-between">
+          <div>
+            <Heading as='h3' size='lg'>
+              Input Undangan Baru
+            </Heading>
+            <Breadcrumb className="mt-2 text-sm">
+              <BreadcrumbItem>
+                <BreadcrumbLink href='/partner-center/undangan'>Undangan</BreadcrumbLink>
+              </BreadcrumbItem>
+
+              <BreadcrumbItem isCurrentPage>
+                <BreadcrumbLink href='#'>Input Undangan</BreadcrumbLink>
+              </BreadcrumbItem>
+            </Breadcrumb>
+          </div>
+          <div>
+            <Button onClick={handleSubmit(handleSubmitForm)} colorScheme='teal' size='md' className='bg-green-700'>SIMPAN</Button>
+          </div>
+        </div>
         <div className=''>
           <Form form={form} />
         </div>

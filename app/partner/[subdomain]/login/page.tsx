@@ -1,10 +1,11 @@
 "use client"
 
-import { Button, FormLabel, Input, InputGroup, InputRightElement, Spacer } from '@chakra-ui/react'
+import { Button, FormLabel, Input, InputGroup, InputRightElement, Spacer, useToast } from '@chakra-ui/react'
 import { useState } from 'react';
 import {useForm} from 'react-hook-form';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
+import { useSignIn } from '@/hooks/useAuth';
 
 type loginForm = {
   username: string;
@@ -17,10 +18,32 @@ function Page() {
   const form = useForm<loginForm>();
   const {register, handleSubmit} = form;
   const route = useRouter();
+  const toast = useToast();
+  const {
+    mutate,
+  }: any = useSignIn({
+    onSuccess: (data: any) => {
+      // window.location.assign(window.location.href);
+      route.replace('/partner-center');
+    },
+    onError: (e: any) => {
+      toast({
+        title: `Login Gagal: ${e.response?.data?.error?.message}`,
+        status: 'error',
+        isClosable: true,
+      })
+    },
+  });
   const onSubmit = (data: any) => {
-    const token = 'jwtmockup';
-    Cookies.set('token', token, { expires: 7, secure: true });
-    route.replace('/partner-center');
+    // const token = 'jwtmockup';
+    // Cookies.set('token', token, { expires: 7, secure: true });
+    // route.replace('/partner-center');
+    const payload = {
+      identifier: data.username,
+      password: data.password,
+    };
+
+    mutate(payload);
   };
   return (
     <>

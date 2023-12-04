@@ -16,7 +16,7 @@ function Index({
 	const {watch, setFocus} = data;
 	const form = useForm<dataForm>();
 	const {watch : watchHere, register: registerHere, handleSubmit} = form;
-	const {bride_name, groom_name} = watch();
+	// const {bride_name, groom_name} = watch();
 	if(type === 'preview'){
 	}else{
 
@@ -41,9 +41,9 @@ function Index({
 		<>
 			<div className="bg-black/40 w-full h-[400px] flex flex-col items-center justify-center">
 				<div className={`${inter.className} text-center text-xl text-white`}>
-					<p onClick={() => setFocus('bride_name')} className='cursor-pointer hover:shadow-lg'>{ bride_name ? bride_name : 'First Name'}</p>
+					{/* <p onClick={() => setFocus('bride_name')} className='cursor-pointer hover:shadow-lg'>{ bride_name ? bride_name : 'First Name'}</p>
 					<p>&</p>
-					<p onClick={() => setFocus('groom_name')} className='cursor-pointer hover:shadow-lg'>{ groom_name ? groom_name : 'Second Name'}</p>
+					<p onClick={() => setFocus('groom_name')} className='cursor-pointer hover:shadow-lg'>{ groom_name ? groom_name : 'Second Name'}</p> */}
 				</div>
 			</div>
 			<div className='px-4 py-4 w-full h-[400px]'>

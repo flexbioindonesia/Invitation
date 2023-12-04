@@ -16,6 +16,7 @@ import Story from "./components/Story";
 import Gifts from "./components/Gifts";
 import BigCover from "./components/BigCover";
 import Music from "./components/Music";
+import { DataInv } from "@/app/partner/[subdomain]/partner-center/undangan/form";
 
 const vollkorn = Vollkorn({ subsets: ['latin'] })
 // import 'animate.css';
@@ -61,17 +62,19 @@ const dataComments = [
   },
 ]
 
-function Index({type, form}: any) {
+function Index({type, data}: any) {
   const [isOpen, setIsOpen] = useState(false);
   const [audio, setAudio] = useState<any>()
   const [isPlay, setIsPlay] = useState<boolean>(true)
   const [isStart, setIsStart] = useState<boolean>(true)
   const [isDatang, setIsDatang] = useState<boolean>();
 
+  // const data = form.watch()
+
   useEffect(() => {
-    setAudio(new Audio(`https://res.cloudinary.com/dbjlrbvv4/video/upload/v1701336405/invite/pw_dan_zziim5.mp3`));
+    setAudio(new Audio( data.generalMusic || `https://res.cloudinary.com/dbjlrbvv4/video/upload/v1701336405/invite/pw_dan_zziim5.mp3`));
     setIsPlay(true);
-  }, [])
+  }, [data.generalMusic])
 
   const start = () => {
     audio.play()
@@ -110,8 +113,6 @@ function Index({type, form}: any) {
     setIsDatang(e.target.checked)
   }
 
-  const data = form.watch()
-
   if(!isOpen){
     return <Sampul data={data} openInvite={setIsOpen} isOpen={isOpen} playAudio={() => buttonOpen()} />
   }
@@ -136,14 +137,34 @@ function Index({type, form}: any) {
           )
         }
         <BrideGroom data={data} />
-        <Quote />
-        <Events />
-        <Story />
-        <Gallery />
-        <Gifts />
-        <Comments data={dataComments} color={'#D4AF37'} sendMessage={handleSendMessage} />
-        <Confirmation clicked={clickConfirmation} confirm={isDatang} />
-        <Footer />
+        {
+          data.quoteIsActive && (
+            <Quote data={data} />
+          )
+        }
+        <Events data={data} />
+        {
+          data.sotryIsActive && (
+            <Story data={data} />
+          )
+        }
+        <Gallery data={data} />
+        {
+          data.giftIsActive && (
+            <Gifts data={data} />
+          )
+        }
+        {
+          data.commentsIsActive && (
+            <Comments data={dataComments} color={'#D4AF37'} sendMessage={handleSendMessage} />
+          )
+        }
+        {
+          data.confirmationIsActive && (
+            <Confirmation clicked={clickConfirmation} confirm={isDatang} />
+          )
+        }
+        <Footer data={data} />
       </div>
     </div>
   );

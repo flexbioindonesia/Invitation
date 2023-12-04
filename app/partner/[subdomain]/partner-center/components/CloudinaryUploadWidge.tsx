@@ -5,7 +5,7 @@ declare const window: any;
 // Create a context to manage the script loading state
 const CloudinaryScriptContext = createContext({});
 
-function CloudinaryUploadWidget({ id, setValue, getValues, mode }: any) {
+function CloudinaryUploadWidget({ id, setValue, getValues, mode, type, disabled }: any) {
   const [loaded, setLoaded] = useState(false);
 
   // const [publicId, setPublicId] = useState("");
@@ -32,7 +32,7 @@ function CloudinaryUploadWidget({ id, setValue, getValues, mode }: any) {
     // folder: "user_images", //upload files to the specified folder
     // tags: ["users", "profile"], //add the given tags to the uploaded files
     // context: {alt: "user_uploaded"}, //add the given context data to the uploaded files
-    // clientAllowedFormats: ["images"], //restrict uploading to image files only
+    clientAllowedFormats: [type], //restrict uploading to image files only
     // maxImageFileSize: 2000000,  //restrict file size to less than 2MB
     // maxImageWidth: 2000, //Scales the image down to a width of 2000 pixels before uploading
     // theme: "purple", //change to a purple theme
@@ -68,12 +68,20 @@ function CloudinaryUploadWidget({ id, setValue, getValues, mode }: any) {
 
   const initializeCloudinaryWidget = () => {
     if (loaded) {
+      let fileArray: any[] = [];
       var myWidget = window.cloudinary.createUploadWidget(
         uwConfig,
         (error: any, result: any) => {
           if (!error && result && result.event === "success") {
             console.log("Done! Here is the image info: ", result.info);
-            setValue(id, result.info.url)
+            if(mode === 'single'){
+              setValue(id, result.info.url)
+            }else{
+              window.fileArray = (window.fileArray || []);
+              fileArray.push(result.info.url);
+              console.log(fileArray);
+              setValue(id, fileArray)
+            }
             // setPublicId(result.info.public_id);
           }
         }
@@ -86,13 +94,14 @@ function CloudinaryUploadWidget({ id, setValue, getValues, mode }: any) {
     <CloudinaryScriptContext.Provider value={{ loaded }}>
       <button
         id={`upload_widget_${id}`}
+        disabled={disabled}
         className="bg-blue-500 px-4 py-4 text-white rounded-sm"
-        onClick={initializeCloudinaryWidget}
+        onClick={disabled ? () => {} : initializeCloudinaryWidget}
       >
-        {`${getValues(id) ? 'Ganti Foto' : `Upload`}`}
+        {`${getValues(id) ? 'Ganti' : `Upload`}`}
       </button>
       {
-        getValues(id) && (
+        type === 'images' && mode === 'single' && getValues(id) && (
           <div className="mt-4">
             <div className="flex">
               <Image
@@ -107,6 +116,74 @@ function CloudinaryUploadWidget({ id, setValue, getValues, mode }: any) {
           </div>
         )
       }
+      {
+        type === 'images' && mode === 'multiple' && getValues(id) && (
+          <div className="mt-4">
+            <div className="flex">
+              {
+                getValues(id)?.map((itm: any, i: any) => (
+                  <Image
+                    key={i}
+                    src={itm}
+                    alt="Photos"
+                    width={120}
+                    height={120}
+                    className='w-[120px] h-[120px] object-cover rounded-md shadow-md'
+                    priority
+                  />
+                ))
+              }
+            </div>
+          </div>
+        )
+      }
+      {
+        type === 'mp3' && mode === 'single' && getValues(id) && (
+          <div className="mt-4">
+            <div className="flex">
+              <audio controls autoPlay={false}>
+                <source src={getValues(id)} type="audio/mpeg" />
+              </audio>
+            </div>
+          </div>
+        )
+      }
+      {/* {
+        mode === 'single' ?
+          getValues(id) && (
+            <div className="mt-4">
+              <div className="flex">
+                <Image
+                  src={getValues(id)}
+                  alt="Photos"
+                  width={120}
+                  height={120}
+                  className='w-[120px] h-[120px] object-cover rounded-md shadow-md'
+                  priority
+                />
+              </div>
+            </div>
+          ) :
+          getValues(id) && (
+            <div className="mt-4">
+              <div className="flex">
+                {
+                  getValues(id).map((itm: any, i: any) => (
+                    <Image
+                      key={i}
+                      src={itm}
+                      alt="Photos"
+                      width={120}
+                      height={120}
+                      className='w-[120px] h-[120px] object-cover rounded-md shadow-md'
+                      priority
+                    />
+                  ))
+                }
+              </div>
+            </div>
+          )
+      } */}
     </CloudinaryScriptContext.Provider>
   );
 }
