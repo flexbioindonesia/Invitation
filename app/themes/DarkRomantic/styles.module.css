@@ -1,0 +1,124 @@
+.sampulBackground{
+  background: url('https://drive.google.com/uc?export=view&id=1p_RV6ptVG2-3sKwwCbX8zEmfnSEfixGv') no-repeat center;
+  background-size: cover;
+}
+
+.vContainer {
+  width: 100%;
+  height: 370px;
+}
+
+.vContainer .imgHead {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+}
+
+.vOne {
+  -webkit-mask-image: url('/image/background/frame-white.jpg');
+  mask-position: center;
+  mask-image: url('/image/background/frame-white.jpg');  
+}
+
+.bridgeWord {
+  background: url('/image/background/natural-light.jpg') no-repeat center;
+  background-size: cover;
+}
+
+.galleryBackground{
+  background: url('https://drive.google.com/uc?export=view&id=1p_RV6ptVG2-3sKwwCbX8zEmfnSEfixGv') no-repeat center;
+  background-size: cover;
+}
+
+.giftBackground{
+  background: url('https://drive.google.com/uc?export=view&id=1P4UFT0gNrqwbyZmDU4K3-8_CZeR7AcUH') no-repeat center;
+  background-size: cover;
+}
+
+.ldsDualRng {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+.ldsDualRng:after {
+  content: " ";
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin: 0px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
+.ldsDualRng.firstAudio {
+  display: inline-block;
+  width: 100%;
+  height: 40px;
+  trasition: .3s;
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.transitionAbs {
+  transition:left 1s linear;
+}
+
+.photos {
+  /* Prevent vertical gaps */
+  line-height: 10px;
+
+  -webkit-column-count: 5;
+  -webkit-column-gap:   0px;
+  -moz-column-count:    5;
+  -moz-column-gap:      5px;
+  column-count:         5;
+  column-gap:           5px;
+}
+
+.photos img {
+ /* Just in case there are inline attributes */
+ width: 100% !important;
+ padding-top: 5px;
+ height: auto !important;
+}
+
+@media (max-width: 1200px) {
+ .photos {
+ -moz-column-count:    4;
+ -webkit-column-count: 4;
+ column-count:         4;
+ }
+}
+@media (max-width: 1000px) {
+ .photos {
+ -moz-column-count:    3;
+ -webkit-column-count: 3;
+ column-count:         3;
+ }
+}
+@media (max-width: 800px) {
+ .photos {
+ -moz-column-count:    2;
+ -webkit-column-count: 2;
+ column-count:         2;
+ }
+}
+@media (max-width: 400px) {
+ .photos {
+ -moz-column-count:    2;
+ -webkit-column-count: 2;
+ column-count:         2;
+ }
+}
+

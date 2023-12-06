@@ -1,5 +1,5 @@
 import type { Metadata, ResolvingMetadata } from 'next'
-import Sidebar from './components/Sidebar'
+import BaseLayout from './components/BaseLayout'
 
 type Props = {
   params: { id: string }
@@ -12,7 +12,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   // read route params
   const id = params.subdomain
-
+  console.log(searchParams)
   // fetch data
 // const product = await fetch(`https://.../${id}`).then((res) => res.json())
 
@@ -40,13 +40,6 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className='flex w-full h-screen'>
-			<div className='w-[300px] hidden lg:overflow-y-auto lg:block'>
-				<Sidebar />
-			</div>
-			<div className='w-full'>
-				{children}
-			</div>
-		</div>
+    <BaseLayout>{children}</BaseLayout>
   )
 }

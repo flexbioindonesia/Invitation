@@ -6,14 +6,24 @@ import Cookies from 'js-cookie';
 const menu = [
   {
     title: 'Home',
-    url: '/partner-center'
+    url: '/partner-center',
+    target: '_parent'
   },
   {
     title: 'Undangan',
     url: '/partner-center/undangan',
     childRoute: [
       '/partner-center/undangan/create'
-    ]
+    ],
+    target: '_parent'
+  },
+  {
+    title: 'Editor Tema',
+    url: '/partner-center/theme-editor',
+    childRoute: [
+      ''
+    ],
+    target: '_blank'
   },
 ]
 
@@ -43,7 +53,7 @@ function Sidebar() {
         <div className="flex flex-col mt-2 px-4 gap-2">
           {
             menu.map((itm, i) => (
-              <Link key={i} href={itm.url} className={`${isActive(itm) && 'bg-blue-600 text-white'} hover:bg-blue-200 rounded-md font-normal px-2 py-2`}>{itm.title}</Link>
+              <Link target={itm.target} key={i} href={itm.url} className={`${isActive(itm) && 'bg-blue-600 text-white'} hover:bg-blue-200 rounded-md font-normal px-2 py-2`}>{itm.title}</Link>
             ))
           }
         </div>

@@ -103,7 +103,7 @@ function Formbuilder({ fields , form}: any) {
             <div key={idx} className='py-2'>
               <FormControl>
                 <FormLabel>{itm.label}</FormLabel>
-                <CloudinaryUploadWidget disabled={itm.disabled || false} setValue={setValue} id={itm.id} type={'images'} getValues={getValues} mode={'single'} {...register(itm.id, {
+                <CloudinaryUploadWidget disabled={itm.disabled || false} setValue={setValue} id={itm.id} type={['jpg', 'jpeg', 'png']} getValues={getValues} mode={'single'} {...register(itm.id, {
                   onChange: itm.onChange,
                   required: itm.isRequired || false
                 })} />
@@ -119,7 +119,7 @@ function Formbuilder({ fields , form}: any) {
             <div key={idx} className='py-2'>
               <FormControl>
                 <FormLabel>{itm.label}</FormLabel>
-                <CloudinaryUploadWidget disabled={itm.disabled || false} setValue={setValue} id={itm.id} getValues={getValues} mode={'multiple'} type={'images'} {...register(itm.id, {
+                <CloudinaryUploadWidget disabled={itm.disabled || false} setValue={setValue} id={itm.id} getValues={getValues} mode={'multiple'} type={['jpg', 'jpeg', 'png']} {...register(itm.id, {
                   onChange: itm.onChange,
                   required: itm.isRequired || false
                 })} />

@@ -34,13 +34,12 @@ function Page({params}: any) {
       slug: data.generalUrl,
       content: data,
       tema: data.generalTheme,
-      partner: params.subdomain
+      partner_id: params.subdomain
     }
   }
 
   const createUndangan = useCreate({
     onSuccess: (res: any) => {
-      console.log(res)
       toast({
         title: `Sukses Menambahkan Undangan`,
         status: 'success',

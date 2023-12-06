@@ -6,61 +6,8 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table'
-import { useReducer, useState } from 'react'
-import moment from 'moment'
 
-type Person = {
-  slug: string
-  tema: string
-  createdAt: string
-  updatedAt: string
-  content: any
-}
-
-const defaultData: Person[] = [
-  {
-    slug: 'putraputri',
-    content: {"profileBrideName": "Putri Simbolon",
-          "profileGroomName": "Putra Nababan", "eventFirstDate": "2023-12-30",},
-    createdAt: "2023-12-03T13:05:30.919Z",
-    updatedAt: "2023-12-03T23:25:29.595Z",
-    tema: "Smooth",
-  },
-]
-
-const columnHelper = createColumnHelper<Person>()
-
-const columns = [
-  columnHelper.accessor('slug', {
-    header: () => 'URL',
-    cell: info => info.getValue(),
-  }),
-  columnHelper.accessor(row => row.content, {
-    id: 'Bride Name',
-    cell: info => info.getValue().profileBrideName,
-    header: () => <span>Pengantin Wanita</span>,
-  }),
-  columnHelper.accessor(row => row.content, {
-    id: 'Groom Name',
-    cell: info => info.getValue().profileGroomName,
-    header: () => <span>Pengantin Pria</span>,
-  }),
-  columnHelper.accessor(row => row.content, {
-    id: 'Tanggal Acara',
-    cell: info => moment(info.getValue().eventFirstDate).format('DD-M-YYYY'),
-    header: () => <span>Tanggal Acara Pertama</span>,
-  }),
-  columnHelper.accessor('tema', {
-    header: () => 'Tema',
-    cell: info => info.renderValue(),
-  }),
-  columnHelper.accessor('createdAt', {
-    header: () => 'Dibuat Tanggal',
-    cell: info => moment(info.renderValue()).format('DD-M-YYYY'),
-  })
-]
-
-function DataTable({data}: any) {
+function DataTable({data, columns}: any) {
   const table = useReactTable({
     data,
     columns,

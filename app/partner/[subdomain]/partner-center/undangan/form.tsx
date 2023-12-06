@@ -5,6 +5,7 @@ import Formbuilder from "../components/Formbuilder";
 import { IField } from "../components/Formbuilder";
 
 export type DataInv = {
+  id: string;
   generalTheme: string;
   generalMusic: string;
   generalUrl: string;
@@ -93,6 +94,7 @@ export const DS_BANK = [
 const DS_THEMES = [
   {id: 'Smooth', name: 'Smooth'},
   {id: 'CasualWe', name: 'CasualWe'},
+  {id: 'DarkRomantic', name: 'DarkRomantic'},
 ]
 
 function Form({form}: any) {

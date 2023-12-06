@@ -2,6 +2,7 @@
 /* eslint-disable camelcase */
 import { useQuery, useMutation } from 'react-query';
 import client from '../libs/client'
+import clientGateway from '../libs/clientGateway'
 
 
 const apiPath = '/posts';
@@ -51,7 +52,53 @@ const useGetList = ({
   onError,
 });
 
+const doFetchID = async ({ query }: any) => client(`/posts?filters[slug][$eq]=${query.slug}`, {}).then((res: any) => ({
+  data: res.data?.data,
+  meta: res.data?.meta,
+}));
+
+const useGetById = ({
+  query, onSuccess = (res: any) => {}, onError = (res: any) => {},
+}: any) => useQuery([`${apiPath}`, query], () => doFetchID({ query }), {
+  keepPreviousData: true,
+  onSuccess,
+  onError,
+});
+
+const doFetchIDPub = async ({ query }: any) => clientGateway(`/posts?filters[slug][$eq]=${query.slug}`, {}).then((res: any) => ({
+  data: res.data?.data,
+  meta: res.data?.meta,
+}));
+
+const useGetByIdPub = ({
+  query, onSuccess = (res: any) => {}, onError = (res: any) => {},
+}: any) => useQuery([`${apiPath}`, query], () => doFetchIDPub({ query }), {
+  keepPreviousData: true,
+  onSuccess,
+  onError,
+});
+
+const useRemove = ({ id, onSuccess, onError }: any) => useMutation({
+  mutationFn: (data: Object) => client(`/posts/${id}`, { method: 'DELETE', data }),
+  onSuccess,
+  onError,
+});
+
+const useUpdate = ({
+  id, onSuccess, onError
+}: any) => useMutation(
+  (data: Object) => client(`/posts/${id}`, { method: 'PUT', data: {data: data} }),
+  {
+    onSuccess,
+    onError,
+  },
+);
+
 export {
   useCreate,
-  useGetList
+  useGetList,
+  useRemove,
+  useGetById,
+  useUpdate,
+  useGetByIdPub
 };
